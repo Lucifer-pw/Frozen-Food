@@ -1,6 +1,18 @@
-# FrozenHub - Sistem Manajemen Frozen Food
+## 👤 Identitas Mahasiswa
+- Nama: ARSANDY VIDYA GUPTA PRADANA
+- NIM: 220103050
+- **KELAS : 22TIA2
+- Dosen Pengampu: Sopingi, M.Kom.
 
-Sistem manajemen penjualan dan inventaris frozen food berbasis web dengan fitur lengkap untuk admin dan user.
+---
+
+## 🏗️ Penjelasan Tema Kasus
+Aplikasi **FrozenHub** adalah sistem manajemen operasional yang dirancang khusus untuk bisnis distribusi makanan beku (*frozen food*). Proyek ini menangani tantangan utama dalam industri *frozen food*, yaitu:
+1. **Manajemen Inventaris Kompleks**: Mengelola stok barang yang memiliki unit berbeda (kardus vs pcs) dengan grouping produk yang sistematis.
+2. **Digitalisasi Pemesanan**: Menyediakan portal bagi pelanggan (User) untuk melakukan pemesanan secara mandiri yang terintegrasi langsung dengan database admin.
+3. **Efisiensi Administrasi**: Otomatisasi pembuatan nomor invoice, perhitungan diskon bertingkat, serta penyajian laporan transaksi dalam format PDF Landscape yang siap cetak untuk printer standar kantor.
+
+---
 
 ## 🚀 Fitur Utama
 
