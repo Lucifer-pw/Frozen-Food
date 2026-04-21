@@ -58,10 +58,25 @@ include 'assets/layout_header.php';
 </h3>
 
 <div class="menu-grid">
-    <a href="order/index_order.php" class="menu-card">
-        <div class="icon-wrap blue"><i class="bi bi-cart-check-fill"></i></div>
-        <h4>Order Produk</h4>
-        <p>Pesan produk frozen food</p>
+    <a href="user/katalog.php" class="menu-card">
+        <div class="icon-wrap blue"><i class="bi bi-shop"></i></div>
+        <h4>Katalog Produk</h4>
+        <p>Lihat & pesan produk</p>
+    </a>
+    <a href="user/keranjang.php" class="menu-card">
+        <div class="icon-wrap yellow"><i class="bi bi-cart3"></i></div>
+        <h4>Keranjang Belanja</h4>
+        <p>Kelola keranjang pesanan</p>
+    </a>
+    <a href="user/akun_saya.php" class="menu-card">
+        <div class="icon-wrap green"><i class="bi bi-person-circle"></i></div>
+        <h4>Akun Saya</h4>
+        <p>Edit profil pengguna</p>
+    </a>
+    <a href="user/histori_pembelian.php" class="menu-card">
+        <div class="icon-wrap red"><i class="bi bi-clock-history"></i></div>
+        <h4>Histori Pembelian</h4>
+        <p>Cek riwayat order</p>
     </a>
 </div>
 

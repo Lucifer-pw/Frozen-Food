@@ -11,6 +11,9 @@ $data = mysqli_fetch_assoc($query);
 if ($data && password_verify($password, $data['password'])) {
     $_SESSION['login'] = true;
     $_SESSION['role'] = $data['role'];
+    $_SESSION['user_id'] = $data['id'];
+    $_SESSION['username'] = $data['username'];
+    $_SESSION['email'] = $data['email'];
 
     header("Location: dashboard.php");
 } else {

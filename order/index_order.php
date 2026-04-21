@@ -11,6 +11,23 @@ $customer = mysqli_query($conn, "SELECT * FROM tb_customer");
 // ambil shipper
 $shipper = mysqli_query($conn, "SELECT * FROM tb_shipper");
 
+// Pre-fill data dari URL jika ada (agar bisa input multiple item ke invoice yang sama)
+$pre_invoice = $_GET['no_invoice'] ?? '';
+$pre_customer = $_GET['customer_id'] ?? '';
+$pre_tanggal_kirim = $_GET['tanggal_kirim'] ?? '';
+$pre_shipper = $_GET['shipper'] ?? '';
+
+// AUTO GENERATE NO INVOICE JIKA KOSONG (ORDER BARU)
+if (empty($pre_invoice)) {
+    $q_last = mysqli_query($conn, "SELECT no_invoice FROM transactions ORDER BY CAST(no_invoice AS UNSIGNED) DESC LIMIT 1");
+    $d_last = mysqli_fetch_assoc($q_last);
+    if ($d_last) {
+        $pre_invoice = (int)$d_last['no_invoice'] + 1;
+    } else {
+        $pre_invoice = 1;
+    }
+}
+
 $page_title = 'Form Order';
 $active_menu = 'order';
 $is_subfolder = true;
@@ -22,8 +39,11 @@ include '../assets/layout_header.php';
 </a>
 
 <div class="card">
-    <div class="card-header">
-        <h3><i class="bi bi-cart-check-fill" style="color:var(--accent-1)"></i> Input Pesanan Baru</h3>
+    <div class="card-header" style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="margin:0;"><i class="bi bi-cart-check-fill" style="color:var(--accent-1)"></i> Input Pesanan Baru</h3>
+        <?php if($pre_invoice): ?>
+            <a href="index_order.php" class="btn btn-outline btn-sm"><i class="bi bi-plus-circle"></i> Buat Invoice Baru</a>
+        <?php endif; ?>
     </div>
 
     <form method="POST" action="proses_order.php">
@@ -31,13 +51,13 @@ include '../assets/layout_header.php';
         <div class="form-row">
             <div class="form-group">
                 <label>No Invoice</label>
-                <input type="text" name="no_invoice" required>
+                <input type="text" name="no_invoice" value="<?= $pre_invoice ?>" required>
             </div>
             <div class="form-group">
                 <label>Customer</label>
                 <select name="customer_id">
                 <?php while($c = mysqli_fetch_assoc($customer)) { ?>
-                    <option value="<?= $c['id']; ?>"><?= $c['nama_toko']; ?></option>
+                    <option value="<?= $c['id']; ?>" <?= ($pre_customer == $c['id']) ? 'selected' : '' ?>><?= $c['nama_toko']; ?></option>
                 <?php } ?>
                 </select>
             </div>
@@ -46,13 +66,13 @@ include '../assets/layout_header.php';
         <div class="form-row">
             <div class="form-group">
                 <label>Tanggal Kirim</label>
-                <input type="date" name="tanggal_kirim">
+                <input type="date" name="tanggal_kirim" value="<?= $pre_tanggal_kirim ?>">
             </div>
             <div class="form-group">
                 <label>Shipper</label>
                 <select name="shipper">
                 <?php while($s = mysqli_fetch_assoc($shipper)) { ?>
-                    <option value="<?= $s['nama_shipper']; ?>"><?= $s['nama_shipper']; ?></option>
+                    <option value="<?= $s['nama_shipper']; ?>" <?= ($pre_shipper == $s['nama_shipper']) ? 'selected' : '' ?>><?= $s['nama_shipper']; ?></option>
                 <?php } ?>
                 </select>
             </div>

@@ -72,6 +72,6 @@ if (isset($_POST['simpan'])) {
         WHERE id_Unique='$product_id'
     ");
 
-    echo "<script>alert('Order berhasil disimpan!'); window.location='index_order.php';</script>";
+    echo "<script>alert('Item berhasil ditambahkan ke pesanan!'); window.location='index_order.php?no_invoice={$no_invoice}&customer_id={$customer}&tanggal_kirim={$kirim}&shipper={$shipper}';</script>";
 }
 ?>
