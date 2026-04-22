@@ -253,6 +253,31 @@ ALTER TABLE `transactions`
 --
 ALTER TABLE `transaction_detail`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_cart`
+--
+
+CREATE TABLE `tb_cart` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `qty` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for table `tb_cart`
+--
+ALTER TABLE `tb_cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for table `tb_cart`
+--
+ALTER TABLE `tb_cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

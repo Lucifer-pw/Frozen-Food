@@ -31,9 +31,27 @@ if (isset($is_subfolder) && $is_subfolder) $base_url = '../';
         <a href="<?= $base_url ?>dashboard.php" class="<?= $active_menu == 'dashboard' ? 'active' : '' ?>">
             <i class="bi bi-grid-1x2-fill"></i> Dashboard
         </a>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') { ?>
         <a href="<?= $base_url ?>order/index_order.php" class="<?= $active_menu == 'order' ? 'active' : '' ?>">
             <i class="bi bi-cart-check-fill"></i> Input Pesanan
         </a>
+        <?php } ?>
+
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'user') { ?>
+        <div class="sidebar-label">Menu User</div>
+        <a href="<?= $base_url ?>user/katalog.php" class="<?= $active_menu == 'katalog' ? 'active' : '' ?>">
+            <i class="bi bi-shop"></i> Katalog
+        </a>
+        <a href="<?= $base_url ?>user/keranjang.php" class="<?= $active_menu == 'keranjang' ? 'active' : '' ?>">
+            <i class="bi bi-cart3"></i> Keranjang
+        </a>
+        <a href="<?= $base_url ?>user/akun_saya.php" class="<?= $active_menu == 'akun' ? 'active' : '' ?>">
+            <i class="bi bi-person-circle"></i> Akun Saya
+        </a>
+        <a href="<?= $base_url ?>user/histori_pembelian.php" class="<?= $active_menu == 'histori' ? 'active' : '' ?>">
+            <i class="bi bi-clock-history"></i> Histori
+        </a>
+        <?php } ?>
 
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') { ?>
         <div class="sidebar-label">Kelola Data</div>

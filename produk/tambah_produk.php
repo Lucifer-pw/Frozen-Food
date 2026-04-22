@@ -22,12 +22,23 @@ if (isset($_POST['simpan'])) {
     $harga     = $_POST['harga'];
     $stok      = $_POST['stok'];
     $qty_box   = $_POST['qty_box'];
+    
+    // Upload Gambar
+    $image_name = null;
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+        $target_dir = "../assets/img/produk/";
+        $extension = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+        $image_name = time() . "_" . bin2hex(random_bytes(4)) . "." . $extension;
+        $target_file = $target_dir . $image_name;
+        
+        move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+    }
 
     mysqli_query($conn, "
         INSERT INTO tb_products 
-        (id_parent, name_product, price, stock, qty_cardboard)
+        (id_parent, name_product, image, price, stock, qty_cardboard)
         VALUES 
-        ('$id_parent', '$nama', '$harga', '$stok', '$qty_box')
+        ('$id_parent', '$nama', '$image_name', '$harga', '$stok', '$qty_box')
     ");
 
     header("Location: index_produk.php");
@@ -48,7 +59,11 @@ include '../assets/layout_header.php';
         <h3><i class="bi bi-plus-circle" style="color:var(--accent-1)"></i> Tambah Produk Baru</h3>
     </div>
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Foto Produk (Opsional)</label>
+            <input type="file" name="image" accept="image/*" style="padding:10px;">
+        </div>
         <div class="form-group">
             <label>ID Parent</label>
             <input type="text" name="id_parent" required>

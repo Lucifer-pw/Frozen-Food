@@ -2,9 +2,9 @@
 session_start();
 require_once '../config/koneksi.php';
 
-// CEK LOGIN
-if (!isset($_SESSION['login'])) {
-    header("Location: ../login.php");
+// CEK ADMIN
+if (!isset($_SESSION['login']) || $_SESSION['role'] != 'admin') {
+    echo "Akses ditolak!";
     exit;
 }
 

@@ -2,6 +2,12 @@
 session_start();
 require_once '../config/koneksi.php';
 
+// CEK ADMIN
+if (!isset($_SESSION['login']) || $_SESSION['role'] != 'admin') {
+    echo "Akses ditolak!";
+    exit;
+}
+
 // ambil produk
 $produk = mysqli_query($conn, "SELECT * FROM tb_products");
 
