@@ -241,7 +241,7 @@ function isiInvoice(noInvoice) {
                         <th style="text-align:right;">Harga</th>
                         <th style="text-align:right;">Total</th>
                         <th style="width:100px; text-align:center;">Diskon (%)</th>
-                        <th style="text-align:right;">Potongan (Rp)</th>
+                        <th style="text-align:right;">Diskon (Rp)</th>
                         <th style="text-align:right;">Subtotal</th>
                     </tr>
                 </thead>

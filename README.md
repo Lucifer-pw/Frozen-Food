@@ -1,7 +1,7 @@
 ## 👤 Identitas Mahasiswa
 - Nama: ARSANDY VIDYA GUPTA PRADANA
 - NIM: 220103050
-- **KELAS : 22TIA2
+- KELAS : 22TIA2
 - Dosen Pengampu: Sopingi, M.Kom.
 
 ---
