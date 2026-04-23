@@ -25,6 +25,10 @@
                 <i class="bi bi-lock"></i>
             </div>
 
+            <div style="text-align:right; margin-bottom:16px; margin-top:-10px;">
+                <a href="lupa_password.php" style="font-size:12px; color:var(--text-muted); text-decoration:none;">Lupa password?</a>
+            </div>
+
             <button type="submit">
                 <i class="bi bi-box-arrow-in-right"></i> Login
             </button>

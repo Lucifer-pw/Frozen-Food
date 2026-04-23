@@ -13,7 +13,7 @@ $email_session = $_SESSION['email'];
 // AMBIL DATA USER DAN CUSTOMER
 $query = mysqli_query($conn, "
     SELECT u.id as user_id, u.username, u.email as user_email, 
-           c.id as cust_id, c.nama_customer, c.nama_toko, c.phone, c.jenis_kelamin, c.alamat, c.provinsi, c.negara
+           c.id as cust_id, c.nama_customer, c.nama_toko, c.phone, c.jenis_kelamin, c.alamat, c.provinsi, c.negara, c.maps_link, c.detail
     FROM tb_users u
     LEFT JOIN tb_customer c ON u.email = c.email
     WHERE u.email = '$email_session'
@@ -30,6 +30,8 @@ if (isset($_POST['update_profil'])) {
     $alamat = $_POST['alamat'];
     $provinsi = $_POST['provinsi'];
     $negara = $_POST['negara'];
+    $maps_link = $_POST['maps_link'];
+    $detail = $_POST['detail'];
     
     // update tb_users (hanya username, karena email jadi acuan)
     mysqli_query($conn, "UPDATE tb_users SET username='$username' WHERE email='$email_session'");
@@ -38,7 +40,7 @@ if (isset($_POST['update_profil'])) {
     // update tb_customer
     mysqli_query($conn, "
         UPDATE tb_customer 
-        SET nama_customer='$nama', nama_toko='$toko', phone='$phone', jenis_kelamin='$jk', alamat='$alamat', provinsi='$provinsi', negara='$negara'
+        SET nama_customer='$nama', nama_toko='$toko', phone='$phone', jenis_kelamin='$jk', alamat='$alamat', provinsi='$provinsi', negara='$negara', maps_link='$maps_link', detail='$detail'
         WHERE email='$email_session'
     ");
 
@@ -110,6 +112,16 @@ include '../assets/layout_header.php';
                     <label>Negara</label>
                     <input type="text" name="negara" value="<?= $data['negara'] ?>">
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label>Link Google Maps (Penting untuk pengiriman)</label>
+                <input type="url" name="maps_link" value="<?= $data['maps_link'] ?>" placeholder="https://maps.google.com/...">
+            </div>
+
+            <div class="form-group">
+                <label>Detail Alamat (Contoh: Pagar Merah, Dekat Masjid)</label>
+                <textarea name="detail" rows="2"><?= $data['detail'] ?></textarea>
             </div>
 
             <button type="submit" name="update_profil" class="btn btn-primary full-width mt-16">

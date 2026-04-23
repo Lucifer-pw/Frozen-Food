@@ -42,9 +42,10 @@ include '../assets/layout_header.php';
                 <tr>
                     <th>No. Invoice</th>
                     <th>Tanggal Order</th>
-                    <th>Tanggal Kirim</th>
+                    <th>Item Belanja</th>
                     <th>Kurir (Shipper)</th>
-                    <th>Detail Barang</th>
+                    <th>Delivery</th>
+                    <th>Payment</th>
                     <th style="text-align:right;">Total Tagihan</th>
                 </tr>
             </thead>
@@ -71,14 +72,45 @@ include '../assets/layout_header.php';
                 <tr>
                     <td style="font-weight:600; color:var(--accent-1);">INV-<?= $row['no_invoice'] ?></td>
                     <td><?= date('d M Y', strtotime($row['tanggal'])) ?></td>
-                    <td><?= date('d M Y', strtotime($row['tanggal_kirim'])) ?></td>
-                    <td><?= $row['shipper'] ?></td>
-                    <td style="font-size:13px; color:var(--text-secondary);">
-                        <ul style="margin:0; padding-left:16px;">
+                    <td style="font-size:13px;">
+                        <ul style="margin:0; padding-left:16px; color:var(--text-secondary);">
                             <?php foreach($list_barang as $brg): ?>
                                 <li><?= $brg ?></li>
                             <?php endforeach; ?>
                         </ul>
+                    </td>
+                    <td>
+                        <div style="font-weight:500;"><?= $row['shipper'] ?: '-' ?></div>
+                        <div style="font-size:12px; color:var(--text-muted);">
+                            <?php if($row['tanggal_kirim'] != '0000-00-00' && $row['tanggal_kirim']): ?>
+                                <i class="bi bi-calendar-event"></i> <?= date('d M Y', strtotime($row['tanggal_kirim'])) ?>
+                            <?php endif; ?>
+                        </div>
+                    </td>
+                    <td>
+                        <?php if ($row['status'] == 'Delivered'): ?>
+                            <span style="padding:4px 8px; border-radius:12px; font-size:11px; font-weight:600; background:var(--success-bg); color:var(--success);">
+                                Delivered
+                            </span>
+                        <?php else: ?>
+                            <span style="padding:4px 8px; border-radius:12px; font-size:11px; font-weight:600; background:var(--danger-bg); color:var(--danger);">
+                                Processing
+                            </span>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php if ($row['payment_status'] == 'Paid'): ?>
+                            <span style="padding:4px 8px; border-radius:12px; font-size:11px; font-weight:600; background:rgba(16, 185, 129, 0.1); color:#10b981;">
+                                Paid
+                            </span>
+                            <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">
+                                <i class="bi bi-clock"></i> <?= date('d M Y', strtotime($row['tanggal_paid'])) ?>
+                            </div>
+                        <?php else: ?>
+                            <span style="padding:4px 8px; border-radius:12px; font-size:11px; font-weight:600; background:rgba(239, 68, 68, 0.1); color:#ef4444;">
+                                Unpaid
+                            </span>
+                        <?php endif; ?>
                     </td>
                     <td style="text-align:right; font-weight:700; color:var(--text-primary);">
                         Rp <?= number_format($total_tagihan,0,',','.') ?>

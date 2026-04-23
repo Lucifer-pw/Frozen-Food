@@ -21,7 +21,7 @@ if (isset($_GET['hapus'])) {
 // PROSES CHECKOUT
 if (isset($_POST['checkout'])) {
     $tanggal_kirim = $_POST['tanggal_kirim'];
-    $shipper = $_POST['shipper'];
+    $shipper = ""; // Shipper akan diisi oleh Admin
     $tanggal = date('Y-m-d');
 
     // Ambil data customer (id)
@@ -165,21 +165,8 @@ include '../assets/layout_header.php';
     <div style="padding: 24px;">
         <form method="POST">
             <div class="form-group">
-                <label>Tanggal Permintaan Kirim</label>
+                <label>Tanggal Permintaan Kirim (Estimasi)</label>
                 <input type="date" name="tanggal_kirim" required min="<?= date('Y-m-d') ?>">
-            </div>
-
-            <div class="form-group">
-                <label>Pilih Kurir (Shipper)</label>
-                <select name="shipper" required>
-                    <option value="">- Pilih Kurir -</option>
-                    <?php 
-                    $shipper = mysqli_query($conn, "SELECT * FROM tb_shipper");
-                    while($s = mysqli_fetch_assoc($shipper)) { 
-                    ?>
-                        <option value="<?= $s['nama_shipper'] ?>"><?= $s['nama_shipper'] ?></option>
-                    <?php } ?>
-                </select>
             </div>
 
             <button type="submit" name="checkout" class="btn btn-primary full-width mt-16" style="background:var(--success); border-color:var(--success);">

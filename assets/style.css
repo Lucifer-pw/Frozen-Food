@@ -36,9 +36,9 @@
     --radius-md: 12px;
     --radius-lg: 16px;
     --radius-xl: 20px;
-    --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
-    --shadow-md: 0 4px 20px rgba(0,0,0,0.3);
-    --shadow-lg: 0 8px 40px rgba(0,0,0,0.4);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.4);
     --shadow-glow: 0 0 30px rgba(56, 189, 248, 0.15);
     --sidebar-width: 260px;
     --header-height: 70px;
@@ -46,7 +46,9 @@
 }
 
 /* ---------- RESET & BASE ---------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -92,7 +94,7 @@ a:hover {
     position: absolute;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
     top: -100px;
     right: -100px;
     border-radius: 50%;
@@ -104,7 +106,7 @@ a:hover {
     position: absolute;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(129,140,248,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(129, 140, 248, 0.12) 0%, transparent 70%);
     bottom: -80px;
     left: -80px;
     border-radius: 50%;
@@ -112,8 +114,15 @@ a:hover {
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-30px) scale(1.05); }
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-30px) scale(1.05);
+    }
 }
 
 .auth-card {
@@ -132,8 +141,15 @@ a:hover {
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .auth-card .logo {
@@ -204,8 +220,8 @@ a:hover {
     box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
 }
 
-.auth-card .input-group input:focus + i,
-.auth-card .input-group input:focus ~ i {
+.auth-card .input-group input:focus+i,
+.auth-card .input-group input:focus~i {
     color: var(--accent-1);
 }
 
@@ -425,8 +441,15 @@ a:hover {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ---------- CARDS ---------- */
@@ -476,7 +499,7 @@ a:hover {
     top: -40px;
     width: 200px;
     height: 200px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
 }
 
@@ -547,11 +570,30 @@ a:hover {
     font-size: 24px;
 }
 
-.icon-wrap.blue { background: var(--info-bg); color: var(--accent-1); }
-.icon-wrap.purple { background: rgba(129,140,248,0.15); color: var(--accent-2); }
-.icon-wrap.green { background: var(--success-bg); color: var(--success); }
-.icon-wrap.yellow { background: var(--warning-bg); color: var(--warning); }
-.icon-wrap.red { background: var(--danger-bg); color: var(--danger); }
+.icon-wrap.blue {
+    background: var(--info-bg);
+    color: var(--accent-1);
+}
+
+.icon-wrap.purple {
+    background: rgba(129, 140, 248, 0.15);
+    color: var(--accent-2);
+}
+
+.icon-wrap.green {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.icon-wrap.yellow {
+    background: var(--warning-bg);
+    color: var(--warning);
+}
+
+.icon-wrap.red {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
 
 .menu-card h4 {
     font-size: 15px;
@@ -858,25 +900,80 @@ table tbody td {
     gap: 12px;
 }
 
-.info-box.info { background: var(--info-bg); color: var(--accent-1); border: 1px solid rgba(56,189,248,0.2); }
-.info-box.success { background: var(--success-bg); color: var(--success); border: 1px solid rgba(52,211,153,0.2); }
-.info-box.danger { background: var(--danger-bg); color: var(--danger); border: 1px solid rgba(248,113,113,0.2); }
+.info-box.info {
+    background: var(--info-bg);
+    color: var(--accent-1);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.info-box.success {
+    background: var(--success-bg);
+    color: var(--success);
+    border: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+.info-box.danger {
+    background: var(--danger-bg);
+    color: var(--danger);
+    border: 1px solid rgba(248, 113, 113, 0.2);
+}
 
 /* ---------- UTILITIES ---------- */
-.mb-0 { margin-bottom: 0; }
-.mb-16 { margin-bottom: 16px; }
-.mb-24 { margin-bottom: 24px; }
-.mb-32 { margin-bottom: 32px; }
-.mt-16 { margin-top: 16px; }
-.mt-24 { margin-top: 24px; }
-.gap-12 { gap: 12px; }
-.flex { display: flex; }
-.items-center { align-items: center; }
-.justify-between { justify-content: space-between; }
-.text-muted { color: var(--text-muted); }
-.text-right { text-align: right; }
-.full-width { width: 100%; }
-.text-center { text-align: center; }
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.mb-24 {
+    margin-bottom: 24px;
+}
+
+.mb-32 {
+    margin-bottom: 32px;
+}
+
+.mt-16 {
+    margin-top: 16px;
+}
+
+.mt-24 {
+    margin-top: 24px;
+}
+
+.gap-12 {
+    gap: 12px;
+}
+
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.text-right {
+    text-align: right;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
 
 /* ---------- BACK LINK ---------- */
 .back-link {
@@ -927,7 +1024,12 @@ table tbody td {
 
 /* ---------- PRINT STYLES ---------- */
 @media print {
-    .sidebar, .top-header, .btn, .search-bar, .back-link {
+
+    .sidebar,
+    .top-header,
+    .btn,
+    .search-bar,
+    .back-link {
         display: none !important;
     }
 
@@ -950,7 +1052,8 @@ table tbody td {
         background: #f0f0f0;
     }
 
-    table thead th, table tbody td {
+    table thead th,
+    table tbody td {
         color: #000;
     }
 }

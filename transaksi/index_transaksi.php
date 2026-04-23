@@ -48,15 +48,22 @@ if (isset($_POST['cetak'])) {
     $no_invoice    = $_POST['no_invoice'];
     $tanggal_kirim = $_POST['tanggal_kirim'];
     $shipper       = $_POST['shipper'];
-    $status        = $_POST['status'] ?? 'Undelivered';
+    $status         = $_POST['status'] ?? 'Undelivered';
+    $payment_status = $_POST['payment_status'] ?? 'Unpaid';
+    $tanggal_paid   = $_POST['tanggal_paid'] ?: null;
     $mode = 'print';
 
-    // update tanggal kirim, shipper dan status
-    mysqli_query($conn, "
+    // update tanggal kirim, shipper, status, dan payment
+    $update_query = "
         UPDATE transactions 
-        SET tanggal_kirim='$tanggal_kirim', shipper='$shipper', status='$status'
+        SET tanggal_kirim='$tanggal_kirim', 
+            shipper='$shipper', 
+            status='$status',
+            payment_status='$payment_status',
+            tanggal_paid=" . ($tanggal_paid ? "'$tanggal_paid'" : "NULL") . "
         WHERE no_invoice='$no_invoice'
-    ");
+    ";
+    mysqli_query($conn, $update_query);
 
     // Update diskon per item
     if (isset($_POST['diskon_persen'])) {
@@ -96,7 +103,7 @@ $shipper_list = mysqli_query($conn, "SELECT * FROM tb_shipper ORDER BY nama_ship
 
 // Ambil daftar semua transaksi untuk preview
 $all_transactions = mysqli_query($conn, "
-    SELECT t.no_invoice, t.tanggal, t.tanggal_kirim, t.shipper, t.status, c.nama_toko
+    SELECT t.no_invoice, t.tanggal, t.tanggal_kirim, t.shipper, t.status, t.payment_status, t.tanggal_paid, c.nama_toko
     FROM transactions t
     LEFT JOIN tb_customer c ON t.customer_id = c.id
     ORDER BY t.id DESC
@@ -130,7 +137,8 @@ include '../assets/layout_header.php';
                     <th>Tanggal</th>
                     <th>Tgl Kirim</th>
                     <th>Shipper</th>
-                    <th>Status</th>
+                    <th>Delivery</th>
+                    <th>Payment</th>
                 </tr>
             </thead>
             <tbody>
@@ -150,12 +158,24 @@ include '../assets/layout_header.php';
                     <td><?= $t['shipper'] ?: '-' ?></td>
                     <td>
                         <?php if ($t['status'] == 'Delivered'): ?>
-                            <span style="padding:4px 10px; border-radius:12px; font-size:11px; font-weight:600; background:var(--success-bg); color:var(--success);">
-                                <i class="bi bi-check-circle"></i> Delivered
+                            <span style="padding:4px 8px; border-radius:12px; font-size:11px; font-weight:600; background:var(--success-bg); color:var(--success);">
+                                Delivered
                             </span>
                         <?php else: ?>
-                            <span style="padding:4px 10px; border-radius:12px; font-size:11px; font-weight:600; background:var(--danger-bg); color:var(--danger);">
-                                <i class="bi bi-clock"></i> Undelivered
+                            <span style="padding:4px 8px; border-radius:12px; font-size:11px; font-weight:600; background:var(--danger-bg); color:var(--danger);">
+                                Undelivered
+                            </span>
+                        <?php endif; ?>
+                    </td>
+                    <td>
+                        <?php if ($t['payment_status'] == 'Paid'): ?>
+                            <span style="padding:4px 8px; border-radius:12px; font-size:11px; font-weight:600; background:rgba(16, 185, 129, 0.1); color:#10b981;">
+                                <i class="bi bi-cash-stack"></i> Paid
+                            </span>
+                            <div style="font-size:10px; color:var(--text-muted); margin-top:2px;"><?= $t['tanggal_paid'] ?></div>
+                        <?php else: ?>
+                            <span style="padding:4px 8px; border-radius:12px; font-size:11px; font-weight:600; background:rgba(239, 68, 68, 0.1); color:#ef4444;">
+                                Unpaid
                             </span>
                         <?php endif; ?>
                     </td>
@@ -312,6 +332,20 @@ function isiInvoice(noInvoice) {
                     <option value="Undelivered" <?= ($data_header['status'] == 'Undelivered') ? 'selected' : '' ?>>Undelivered</option>
                     <option value="Delivered" <?= ($data_header['status'] == 'Delivered') ? 'selected' : '' ?>>Delivered</option>
                 </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>Status Pembayaran</label>
+                <select name="payment_status" required>
+                    <option value="Unpaid" <?= ($data_header['payment_status'] == 'Unpaid') ? 'selected' : '' ?>>Unpaid (Belum Lunas)</option>
+                    <option value="Paid" <?= ($data_header['payment_status'] == 'Paid') ? 'selected' : '' ?>>Paid (Lunas)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tanggal Pelunasan (Paid)</label>
+                <input type="date" name="tanggal_paid" value="<?= $data_header['tanggal_paid'] ?>">
             </div>
         </div>
 

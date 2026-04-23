@@ -22,6 +22,7 @@ if (isset($_POST['edit_simpan'])) {
     $phone = $_POST['phone'];
     $ktp = $_POST['no_ktp'];
     $detail = $_POST['detail'];
+    $maps_link = $_POST['maps_link'];
 
     mysqli_query($conn, "
         UPDATE tb_customer SET
@@ -33,7 +34,8 @@ if (isset($_POST['edit_simpan'])) {
         negara = '$negara',
         phone = '$phone',
         no_ktp = '$ktp',
-        detail = '$detail'
+        detail = '$detail',
+        maps_link = '$maps_link'
         WHERE id = '$id'
     ");
 
@@ -54,12 +56,13 @@ if (isset($_POST['tambah'])) {
     $phone = $_POST['phone'];
     $ktp = $_POST['no_ktp'];
     $detail = $_POST['detail'];
+    $maps_link = $_POST['maps_link'];
 
     mysqli_query($conn, "
         INSERT INTO tb_customer 
-        (id_customer, nama_customer, nama_toko, alamat, provinsi, negara, phone, no_ktp, detail)
+        (id_customer, nama_customer, nama_toko, alamat, provinsi, negara, phone, no_ktp, detail, maps_link)
         VALUES 
-        ('$id_customer','$nama','$toko','$alamat','$provinsi','$negara','$phone','$ktp','$detail')
+        ('$id_customer','$nama','$toko','$alamat','$provinsi','$negara','$phone','$ktp','$detail','$maps_link')
     ");
 
     echo "<script>alert('Customer berhasil ditambahkan');</script>";
@@ -126,7 +129,19 @@ include '../assets/layout_header.php';
                     <td><code style="background:var(--info-bg);color:var(--accent-1);padding:2px 8px;border-radius:4px;font-size:12px;"><?= $c['id_customer']; ?></code></td>
                     <td style="color:var(--text-primary); font-weight:500;"><?= $c['nama_customer']; ?></td>
                     <td><?= $c['nama_toko']; ?></td>
-                    <td><?= $c['alamat']; ?></td>
+                    <td>
+                        <div style="font-weight:500; color:var(--text-primary);"><?= $c['alamat']; ?></div>
+                        <div style="font-size:12px; color:var(--text-muted);">
+                            <?= $c['provinsi']; ?>, <?= $c['negara']; ?>
+                        </div>
+                        <?php 
+                        $final_maps = !empty($c['maps_link']) ? $c['maps_link'] : "https://www.google.com/maps/search/" . urlencode($c['alamat'] . ' ' . $c['provinsi'] . ' ' . $c['negara']);
+                        ?>
+                        <a href="<?= $final_maps ?>" 
+                           target="_blank" style="font-size:11px; color:var(--accent-1); text-decoration:none; display:inline-block; margin-top:4px;">
+                            <i class="bi bi-geo-alt-fill"></i> Lihat di Maps
+                        </a>
+                    </td>
                     <td><?= $c['phone']; ?></td>
                     <td>
                         <a href="?detail=<?= $c['id']; ?><?= $keyword ? '&search='.$keyword : '' ?>" class="btn btn-outline btn-sm">
@@ -278,8 +293,13 @@ if ($data_edit):
         </div>
 
         <div class="form-group">
-            <label>Detail</label>
-            <textarea name="detail" placeholder="Catatan tambahan..."><?= $data_edit['detail'] ?></textarea>
+            <label>Link Google Maps (URL)</label>
+            <input type="url" name="maps_link" value="<?= $data_edit['maps_link'] ?>" placeholder="https://maps.google.com/...">
+        </div>
+
+        <div class="form-group">
+            <label>Detail Alamat / Catatan Tambahan</label>
+            <textarea name="detail" placeholder="Contoh: Pagar hitam, dekat masjid, dll..."><?= $data_edit['detail'] ?></textarea>
         </div>
 
         <button name="edit_simpan" class="btn btn-primary full-width mt-16" style="background: var(--warning); border-color: var(--warning);">
@@ -346,8 +366,13 @@ endif;
         </div>
 
         <div class="form-group">
-            <label>Detail</label>
-            <textarea name="detail" placeholder="Catatan tambahan..."></textarea>
+            <label>Link Google Maps (URL)</label>
+            <input type="url" name="maps_link" placeholder="https://maps.google.com/...">
+        </div>
+
+        <div class="form-group">
+            <label>Detail Alamat / Catatan Tambahan</label>
+            <textarea name="detail" placeholder="Contoh: Pagar hitam, dekat masjid, dll..."></textarea>
         </div>
 
         <button name="tambah" class="btn btn-primary full-width mt-16">
