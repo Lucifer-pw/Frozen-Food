@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2026 at 09:50 AM
+-- Generation Time: Apr 23, 2026 at 04:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,7 +39,6 @@ CREATE TABLE `tb_cart` (
 --
 
 INSERT INTO `tb_cart` (`id`, `user_id`, `product_id`, `qty`) VALUES
-(13, 4, 29, 8),
 (14, 1, 31, 9);
 
 -- --------------------------------------------------------
@@ -72,8 +71,10 @@ INSERT INTO `tb_customer` (`id`, `id_customer`, `nama_customer`, `nama_toko`, `e
 (1, 'K001', 'SUSILO HARYAWAN', 'MISTER SOSIS', '', '', 'BLORA', 'JAWA TENGAH', 'INDONESIA', '', '', '', NULL),
 (2, 'AB001', 'RADEN YUDHISTIRA', 'MEATSHOP NATA', '', '', 'WATES', 'JAWA TENGAH', 'INDONESIA', '', '', '', NULL),
 (3, 'AA001', 'BAMBANG EKO RATIYATNO', 'KK FF', '', '', 'WONOSOBO', 'JAWA TENGAH', 'INDONESIA', '', '', '', NULL),
-(4, 'CUST-17768', 'HINDARWAN', 'HANA MAKMUR', 'hanamakmur@gmail.com', 'Laki-Laki', 'PURBALINGGA', 'JAWA TENGAH', 'INDONESIA', '', '', '', NULL),
-(5, 'CUST-1776838375', 'Lucian', 'LUCIFER FF', 'Lucifer@gmail.com', 'Laki-Laki', 'SURAKARTA', 'JAWA TENGAH ', 'INDONESIA', '081328580511', '', 'Depan Joglo Mangkubumen Surakarta', 'https://maps.app.goo.gl/6isGfRRm3CPKajKz9');
+(4, 'CUST-17768', 'HINDARWAN', 'HANA MAKMUR', 'hanamakmur@gmail.com', 'Laki-Laki', 'PURBALINGGA', 'JAWA TENGAH', 'INDONESIA', '', '', 'bantul jogja', 'https://maps.app.goo.gl/NE8TKGkRUboG3KH79'),
+(5, 'CUST-1776838375', 'Lucian', 'LUCIFER FF', 'Lucifer@gmail.com', 'Laki-Laki', 'SURAKARTA', 'JAWA TENGAH ', 'INDONESIA', '081328580511', '', 'Depan Joglo Mangkubumen Surakarta', 'https://maps.app.goo.gl/6isGfRRm3CPKajKz9'),
+(6, 'CUST-1776923092', 'rzgrfn', 'PUTRA FF', '1234@gmail.com', 'Laki-Laki', 'SOLO BANJARSARI', 'JAWA TENGAH', 'INDONESIA', '0857793488', '', '', ''),
+(7, 'CUST-1776949185', 'parisff', 'PARIS FF', 'parisff@gmail.com', 'Laki-Laki', 'YOGYAKARTA', 'JAWA TENGAH ', 'INDONESIA', '', '', 'depan jalan', 'https://maps.app.goo.gl/NE8TKGkRUboG3KH79');
 
 -- --------------------------------------------------------
 
@@ -107,24 +108,24 @@ INSERT INTO `tb_products` (`id_Unique`, `id_parent`, `name_product`, `image`, `p
 (9, 'RA-250', 'ROLLADE AYAM 250 G', NULL, 18068, 0, 30),
 (10, 'RAR-400', 'ROLLADE AYAM ROLL 400 G', NULL, 24797, 201, 50),
 (11, 'RS-1000', 'ROLLADE SAPI 1000 G', NULL, 68006, 0, 10),
-(12, 'RS-250', 'ROLLADE SAPI 250 G', NULL, 18915, 0, 30),
+(12, 'RS-250', 'ROLLADE SAPI 250 G', '1776930845_811939c0.png', 18915, 30, 30),
 (13, 'RS-215', 'ROLLADE SAPI 215 G', NULL, 16376, 0, 30),
 (14, 'RSR-400', 'ROLLADE SAPI ROLL 400 G', NULL, 26194, 923, 50),
 (15, 'SA-250', 'SOSIS AYAM 250 G', NULL, 20606, 0, 30),
 (16, 'SS-250', 'SOSIS SAPI 250 G', NULL, 25680, 0, 30),
-(17, 'SC-250', 'SOSIS COCKTAIL 250 G', NULL, 25680, 60, 30),
+(17, 'SC-250', 'SOSIS COCKTAIL 250 G', NULL, 25680, 40, 30),
 (18, 'BSO-500', 'BRATWURST SAPI ORI 500 G', NULL, 45838, 0, 15),
 (19, 'BSM-500', 'BRATWURST SAPI MINI 500 G', NULL, 45838, 0, 15),
 (20, 'BAO-500', 'BRATWURST AYAM ORI 500 G', NULL, 44569, 0, 15),
 (21, 'BAM-500', 'BRATWURST AYAM MINI 500 G', NULL, 44569, 0, 15),
 (22, 'BRS-13', 'BRS COKLAT 13S 500 G', NULL, 30688, 789, 15),
 (23, 'BRS-24', 'BRS COKLAT 24S 500 G', NULL, 30688, 1440, 15),
-(24, 'BRS-7', 'BRS COKLAT 7S 500 G', NULL, 30688, 1105, 15),
+(24, 'BRS-7', 'BRS COKLAT 7S 500 G', NULL, 30688, 1095, 15),
 (25, 'BRSM-500', 'BRS MERAH 24 500G', NULL, 36691, 1005, 15),
 (26, 'BRSM-500', 'BRS MERAH 24S 500G', NULL, 34549, 1305, 15),
 (27, 'KALU-400', 'KORNET AYAM LUNCHEON 400 G', NULL, 26893, 0, 10),
 (28, 'KAL-400', 'KORNET AYAM LOYANG 2 400G', NULL, 14894, 1000, 20),
-(29, 'BRS-13', 'BRS COKLAT 13S 2 500G', NULL, 27962, 800, 15),
+(29, 'BRS-13', 'BRS COKLAT 13S 2 500G', NULL, 27962, 792, 15),
 (30, 'BRS-7', 'BRS COKLAT 7S 2 500G', NULL, 27962, 150, 15),
 (31, 'BRS-24', 'BRS COKLAT 24S 2 500G', NULL, 28234, 449, 15),
 (32, 'RSR-400', 'ROLLADE SAPI ROLL 2 400G', NULL, 20753, 173, 50),
@@ -132,7 +133,7 @@ INSERT INTO `tb_products` (`id_Unique`, `id_parent`, `name_product`, `image`, `p
 (34, 'RS-1000', 'ROLLADE SAPI 1000 G ( MBG )', NULL, 46000, 21, 10),
 (35, 'RA-1000', 'ROLLADE AYAM 1000 G ( MBG )', NULL, 45000, 1290, 10),
 (36, 'KA-1000', 'KORNET AYAM 1000 G ( MBG )', NULL, 32000, 0, 10),
-(37, 'RS-361000', 'ROLLADE SAPI STIKER 1 : 36 1000 G ( MBG )', '', 46000, 250, 10);
+(37, 'RS-361000', 'ROLLADE SAPI STIKER 1 : 36 1000 G ( MBG )', '', 46000, 240, 10);
 
 -- --------------------------------------------------------
 
@@ -181,7 +182,9 @@ INSERT INTO `tb_users` (`id`, `username`, `password`, `email`, `role`, `reset_to
 (1, 'Lucifer', '$2y$10$etWMD2d9vYFMcc8qgZNu2.Pc/iKmDJBnFXqdwIRVmKct3uEbZJxay', 'lucifer@gmail.com', 'user', NULL, NULL),
 (2, 'admin', '$2y$10$dsNyXQErKaYb1lqqsMOiD.iRGHAf8i/fQojzc7NSvxZcGDoiTb8qC', 'admin@gmail.com', 'admin', NULL, NULL),
 (4, 'hanamakmur', '$2y$10$fw8agotONFYzbT.dmscCX./9CYCNvnxPaA3pk75b9q5KxiHNKO9ZO', 'hanamakmur@gmail.com', 'user', NULL, NULL),
-(5, 'Lucifer', '$2y$10$7Y9KuxX17/AtT1ZOkGY9YOJTj6MsOAyxNzhGqRGdjHWcRQRpuCOOm', 'Lucifer@gmail.com', 'user', NULL, NULL);
+(5, 'Lucifer', '$2y$10$7Y9KuxX17/AtT1ZOkGY9YOJTj6MsOAyxNzhGqRGdjHWcRQRpuCOOm', 'Lucifer@gmail.com', 'user', NULL, NULL),
+(6, 'rzgrfn', '$2y$10$TtjDqrzqOLMSSjGsOvdk5e2piNxmI3BpE6qSRMRLp76BcuYC1JQxu', '1234@gmail.com', 'user', NULL, NULL),
+(7, 'parisff', '$2y$10$4zrELdBe1DAlnha7EnwTfuw7hfnq1CgcHdYjADzGek8.uRY3mNOCi', 'parisff@gmail.com', 'user', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -206,13 +209,15 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`id`, `no_invoice`, `customer_id`, `tanggal`, `tanggal_kirim`, `shipper`, `status`, `payment_status`, `tanggal_paid`) VALUES
-(16, 1, 1, '2026-04-20', '2026-04-20', 'JOKO SETIAWAN', '', 'Unpaid', NULL),
-(17, 2, 2, '2026-04-20', '2026-04-25', 'JOKO SETIAWAN', 'Undelivered', 'Unpaid', NULL),
-(18, 3, 4, '2026-04-22', '2026-04-22', 'JOKO SETIAWAN', 'Undelivered', 'Unpaid', NULL),
-(19, 4, 4, '2026-04-22', '2026-04-25', 'JOKO SETIAWAN', 'Undelivered', 'Unpaid', NULL),
-(20, 5, 4, '2026-04-22', '2026-04-30', 'JOKO SETIAWAN', 'Delivered', 'Paid', '2026-05-20'),
-(21, 6, 4, '2026-04-22', '2026-05-01', 'JOKO SETIAWAN', 'Undelivered', 'Unpaid', NULL),
-(22, 7, 5, '2026-04-22', '2026-05-22', 'PAK BC', 'Delivered', 'Unpaid', NULL);
+(16, 1, 1, '2026-04-20', '2026-04-20', 'PAK BC', 'Undelivered', 'Unpaid', NULL),
+(17, 2, 2, '2026-04-20', '2026-04-25', 'PAK BC', 'Undelivered', 'Unpaid', NULL),
+(18, 3, 4, '2026-04-22', '2026-04-22', 'PAK BC', 'Undelivered', 'Unpaid', NULL),
+(19, 4, 4, '2026-04-22', '2026-04-25', 'PAK BC', 'Undelivered', 'Unpaid', NULL),
+(20, 5, 4, '2026-04-22', '2026-04-30', 'PAK BC', 'Delivered', 'Paid', '2026-05-20'),
+(21, 6, 4, '2026-04-22', '2026-05-01', 'PAK BC', 'Undelivered', 'Unpaid', NULL),
+(22, 7, 5, '2026-04-22', '2026-05-22', 'PAK BC', 'Delivered', 'Unpaid', NULL),
+(23, 8, 4, '2026-04-23', '2026-04-30', 'PAK BC', 'Delivered', 'Unpaid', NULL),
+(24, 9, 6, '2026-04-23', '2026-04-25', 'PAK BC', 'Delivered', 'Paid', '2026-05-25');
 
 -- --------------------------------------------------------
 
@@ -255,7 +260,11 @@ INSERT INTO `transaction_detail` (`id`, `transaction_id`, `name_product`, `harga
 (31, 21, 'KORNET AYAM 250 G', 12825, 5, '0', 0),
 (32, 21, 'KORNET AYAM LOYANG 2 400G', 14894, 40, '0', 0),
 (33, 22, 'BRS COKLAT 13S 2 500G', 27962, 8, '17.5', 39147),
-(34, 22, 'BRS COKLAT 13S 500 G', 30688, 10, '0', 0);
+(34, 22, 'BRS COKLAT 13S 500 G', 30688, 10, '0', 0),
+(35, 23, 'BRS COKLAT 13S 2 500G', 27962, 8, '17.5', 39147),
+(36, 24, 'BRS COKLAT 7S 500 G', 30688, 10, '5', 15344),
+(37, 24, 'ROLLADE SAPI STIKER 1 : 36 1000 G ( MBG )', 46000, 10, '0', 0),
+(38, 24, 'SOSIS COCKTAIL 250 G', 25680, 20, '17.5', 89880);
 
 --
 -- Indexes for dumped tables
@@ -311,13 +320,13 @@ ALTER TABLE `transaction_detail`
 -- AUTO_INCREMENT for table `tb_cart`
 --
 ALTER TABLE `tb_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tb_customer`
 --
 ALTER TABLE `tb_customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_products`
@@ -335,19 +344,19 @@ ALTER TABLE `tb_shipper`
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `transaction_detail`
 --
 ALTER TABLE `transaction_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

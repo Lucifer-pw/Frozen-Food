@@ -8,7 +8,6 @@ $password = $_POST['password'];
 $query = mysqli_query($conn, "SELECT * FROM tb_users WHERE username='$username'");
 $data = mysqli_fetch_assoc($query);
 
-if ($data && password_verify($password, $data['password'])) {
     $_SESSION['login'] = true;
     $_SESSION['role'] = $data['role'];
     $_SESSION['user_id'] = $data['id'];
