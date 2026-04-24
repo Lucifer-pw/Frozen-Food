@@ -45,27 +45,32 @@ if (isset($_POST['reset'])) {
         <div class="logo"><i class="bi bi-shield-lock-fill"></i></div>
         <h2>Reset Password</h2>
         
-        <?php if (!$valid_token && $message != "success"): ?>
+        <?php 
+        if (!$valid_token && $message != "success"): ?>
             <div class="info-box danger mb-24">
                 <i class="bi bi-x-circle"></i>
                 <div>Link verifikasi tidak valid atau telah kadaluarsa. Silakan ajukan ulang permintaan lupa password.</div>
             </div>
             <a href="lupa_password.php" class="btn btn-outline full-width">Lupa Password Lagi</a>
-        <?php elseif ($message == "success"): ?>
+        <?php 
+        elseif ($message == "success"): ?>
             <div class="info-box success mb-24">
                 <i class="bi bi-check-circle"></i>
                 <div>Password berhasil diubah! Silakan login dengan password baru Anda.</div>
             </div>
             <a href="login.php" class="btn btn-primary full-width">Login Sekarang</a>
-        <?php else: ?>
+        <?php 
+        else: ?>
             <p class="subtitle">Buat password baru untuk akun Anda</p>
 
-            <?php if ($message == "mismatch"): ?>
+            <?php 
+            if ($message == "mismatch"): ?>
                 <div class="info-box danger mb-16">
                     <i class="bi bi-exclamation-triangle"></i>
                     <div>Konfirmasi password tidak cocok!</div>
                 </div>
-            <?php endif; ?>
+            <?php 
+            endif; ?>
 
             <form method="POST">
                 <div class="input-group">
@@ -81,7 +86,8 @@ if (isset($_POST['reset'])) {
                     <i class="bi bi-check2-circle"></i> Ubah Password
                 </button>
             </form>
-        <?php endif; ?>
+        <?php 
+        endif; ?>
     </div>
 </div>
 

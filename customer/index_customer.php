@@ -122,6 +122,7 @@ include '../assets/layout_header.php';
             <tbody>
             <?php 
             $no = 1;
+            /*Looping tampilan customer di menu admin*/
             while($c = mysqli_fetch_assoc($query)) { 
             ?>
                 <tr>
