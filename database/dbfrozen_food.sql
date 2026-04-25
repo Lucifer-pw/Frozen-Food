@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2026 at 04:56 PM
+-- Generation Time: Apr 25, 2026 at 05:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -74,7 +74,35 @@ INSERT INTO `tb_customer` (`id`, `id_customer`, `nama_customer`, `nama_toko`, `e
 (4, 'CUST-17768', 'HINDARWAN', 'HANA MAKMUR', 'hanamakmur@gmail.com', 'Laki-Laki', 'PURBALINGGA', 'JAWA TENGAH', 'INDONESIA', '', '', 'bantul jogja', 'https://maps.app.goo.gl/NE8TKGkRUboG3KH79'),
 (5, 'CUST-1776838375', 'Lucian', 'LUCIFER FF', 'Lucifer@gmail.com', 'Laki-Laki', 'SURAKARTA', 'JAWA TENGAH ', 'INDONESIA', '081328580511', '', 'Depan Joglo Mangkubumen Surakarta', 'https://maps.app.goo.gl/6isGfRRm3CPKajKz9'),
 (6, 'CUST-1776923092', 'rzgrfn', 'PUTRA FF', '1234@gmail.com', 'Laki-Laki', 'SOLO BANJARSARI', 'JAWA TENGAH', 'INDONESIA', '0857793488', '', '', ''),
-(7, 'CUST-1776949185', 'parisff', 'PARIS FF', 'parisff@gmail.com', 'Laki-Laki', 'YOGYAKARTA', 'JAWA TENGAH ', 'INDONESIA', '', '', 'depan jalan', 'https://maps.app.goo.gl/NE8TKGkRUboG3KH79');
+(7, 'CUST-1776949185', 'parisff', 'PARIS FF', 'parisff@gmail.com', 'Laki-Laki', 'YOGYAKARTA', 'JAWA TENGAH ', 'INDONESIA', '', '', 'depan jalan', 'https://maps.app.goo.gl/NE8TKGkRUboG3KH79'),
+(8, 'CUST-1777002990', 'ANIS WIDIYATI', 'AW FF', 'awfrozenfood@gmail.com', 'Laki-Laki', 'SEMARANG', 'JAWA TENGAH', 'INDONESIA', '', '', 'DEPAN JALAN', 'https://maps.app.goo.gl/FapoZLSqPRYAtVs4A'),
+(9, 'CUST-1777085319', 'UDB', 'UDB FROZEN FOOD', 'udb@gmail.com', 'Laki-Laki', 'SURAKARTA', 'JAWA TENGAH ', 'INDONESIA', '084512085412052', '', 'depan TOKO GROSIR LOTTE MART TIPES', 'https://maps.app.goo.gl/xu9rBKWe3qhuBQLX8');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_member`
+--
+
+CREATE TABLE `tb_member` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status` enum('member','standar') NOT NULL DEFAULT 'standar',
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_member`
+--
+
+INSERT INTO `tb_member` (`id`, `user_id`, `status`, `updated_at`) VALUES
+(1, 1, 'standar', '2026-04-25 02:30:48'),
+(2, 4, 'standar', '2026-04-25 02:21:33'),
+(3, 5, 'member', '2026-04-25 02:30:06'),
+(4, 6, 'standar', '2026-04-25 02:21:33'),
+(5, 7, 'standar', '2026-04-25 02:21:33'),
+(8, 8, 'member', '2026-04-25 02:42:21'),
+(9, 9, 'member', '2026-04-25 03:47:45');
 
 -- --------------------------------------------------------
 
@@ -108,7 +136,7 @@ INSERT INTO `tb_products` (`id_Unique`, `id_parent`, `name_product`, `image`, `p
 (9, 'RA-250', 'ROLLADE AYAM 250 G', NULL, 18068, 0, 30),
 (10, 'RAR-400', 'ROLLADE AYAM ROLL 400 G', NULL, 24797, 201, 50),
 (11, 'RS-1000', 'ROLLADE SAPI 1000 G', NULL, 68006, 0, 10),
-(12, 'RS-250', 'ROLLADE SAPI 250 G', '1776930845_811939c0.png', 18915, 30, 30),
+(12, 'RS-250', 'ROLLADE SAPI 250 G', '1776930845_811939c0.png', 18915, 20, 30),
 (13, 'RS-215', 'ROLLADE SAPI 215 G', NULL, 16376, 0, 30),
 (14, 'RSR-400', 'ROLLADE SAPI ROLL 400 G', NULL, 26194, 923, 50),
 (15, 'SA-250', 'SOSIS AYAM 250 G', NULL, 20606, 0, 30),
@@ -118,22 +146,23 @@ INSERT INTO `tb_products` (`id_Unique`, `id_parent`, `name_product`, `image`, `p
 (19, 'BSM-500', 'BRATWURST SAPI MINI 500 G', NULL, 45838, 0, 15),
 (20, 'BAO-500', 'BRATWURST AYAM ORI 500 G', NULL, 44569, 0, 15),
 (21, 'BAM-500', 'BRATWURST AYAM MINI 500 G', NULL, 44569, 0, 15),
-(22, 'BRS-13', 'BRS COKLAT 13S 500 G', NULL, 30688, 789, 15),
-(23, 'BRS-24', 'BRS COKLAT 24S 500 G', NULL, 30688, 1440, 15),
+(22, 'BRS-13', 'BRS COKLAT 13S 500 G', NULL, 30688, 779, 15),
+(23, 'BRS-24', 'BRS COKLAT 24S 500 G', NULL, 30688, 1415, 15),
 (24, 'BRS-7', 'BRS COKLAT 7S 500 G', NULL, 30688, 1095, 15),
 (25, 'BRSM-500', 'BRS MERAH 24 500G', NULL, 36691, 1005, 15),
-(26, 'BRSM-500', 'BRS MERAH 24S 500G', NULL, 34549, 1305, 15),
+(26, 'BRSM-500', 'BRS MERAH 24S 500G', NULL, 34549, 780, 15),
 (27, 'KALU-400', 'KORNET AYAM LUNCHEON 400 G', NULL, 26893, 0, 10),
-(28, 'KAL-400', 'KORNET AYAM LOYANG 2 400G', NULL, 14894, 1000, 20),
+(28, 'KAL-400', 'KORNET AYAM LOYANG 2 400G', NULL, 14894, 800, 20),
 (29, 'BRS-13', 'BRS COKLAT 13S 2 500G', NULL, 27962, 792, 15),
 (30, 'BRS-7', 'BRS COKLAT 7S 2 500G', NULL, 27962, 150, 15),
-(31, 'BRS-24', 'BRS COKLAT 24S 2 500G', NULL, 28234, 449, 15),
+(31, 'BRS-24', 'BRS COKLAT 24S 2 500G', NULL, 28234, 299, 15),
 (32, 'RSR-400', 'ROLLADE SAPI ROLL 2 400G', NULL, 20753, 173, 50),
 (33, 'RAR-400', 'ROLLADE AYAM ROLL 2 400G', NULL, 19074, 224, 50),
 (34, 'RS-1000', 'ROLLADE SAPI 1000 G ( MBG )', NULL, 46000, 21, 10),
-(35, 'RA-1000', 'ROLLADE AYAM 1000 G ( MBG )', NULL, 45000, 1290, 10),
+(35, 'RA-1000', 'ROLLADE AYAM 1000 G ( MBG )', NULL, 45000, 990, 10),
 (36, 'KA-1000', 'KORNET AYAM 1000 G ( MBG )', NULL, 32000, 0, 10),
-(37, 'RS-361000', 'ROLLADE SAPI STIKER 1 : 36 1000 G ( MBG )', '', 46000, 240, 10);
+(37, 'RS-361000', 'ROLLADE SAPI STIKER 1 : 36 1000 G ( MBG )', '', 46000, 240, 10),
+(38, 'FIK01_UDB', 'DUTA FROZEN FOOD TIPES 400 G', '', 50000, 10, 10);
 
 -- --------------------------------------------------------
 
@@ -184,7 +213,9 @@ INSERT INTO `tb_users` (`id`, `username`, `password`, `email`, `role`, `reset_to
 (4, 'hanamakmur', '$2y$10$fw8agotONFYzbT.dmscCX./9CYCNvnxPaA3pk75b9q5KxiHNKO9ZO', 'hanamakmur@gmail.com', 'user', NULL, NULL),
 (5, 'Lucifer', '$2y$10$7Y9KuxX17/AtT1ZOkGY9YOJTj6MsOAyxNzhGqRGdjHWcRQRpuCOOm', 'Lucifer@gmail.com', 'user', NULL, NULL),
 (6, 'rzgrfn', '$2y$10$TtjDqrzqOLMSSjGsOvdk5e2piNxmI3BpE6qSRMRLp76BcuYC1JQxu', '1234@gmail.com', 'user', NULL, NULL),
-(7, 'parisff', '$2y$10$4zrELdBe1DAlnha7EnwTfuw7hfnq1CgcHdYjADzGek8.uRY3mNOCi', 'parisff@gmail.com', 'user', NULL, NULL);
+(7, 'parisff', '$2y$10$4zrELdBe1DAlnha7EnwTfuw7hfnq1CgcHdYjADzGek8.uRY3mNOCi', 'parisff@gmail.com', 'user', NULL, NULL),
+(8, 'awff', '$2y$10$9JZ4jlB7XnemsFxpuiB.TeKw7veWTL5euArej8H8hUgR.NwRvOjRW', 'awfrozenfood@gmail.com', 'user', NULL, NULL),
+(9, 'UDB', '$2y$10$rD9JR/8SRwGlf3k4Vk2wnu5bpU0VFCGvYN2Kn2SgkDn9HUW7.t8pm', 'udb@gmail.com', 'user', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -217,7 +248,10 @@ INSERT INTO `transactions` (`id`, `no_invoice`, `customer_id`, `tanggal`, `tangg
 (21, 6, 4, '2026-04-22', '2026-05-01', 'PAK BC', 'Undelivered', 'Unpaid', NULL),
 (22, 7, 5, '2026-04-22', '2026-05-22', 'PAK BC', 'Delivered', 'Unpaid', NULL),
 (23, 8, 4, '2026-04-23', '2026-04-30', 'PAK BC', 'Delivered', 'Unpaid', NULL),
-(24, 9, 6, '2026-04-23', '2026-04-25', 'PAK BC', 'Delivered', 'Paid', '2026-05-25');
+(24, 9, 6, '2026-04-23', '2026-04-25', 'PAK BC', 'Delivered', 'Paid', '2026-05-25'),
+(25, 10, 8, '2026-04-24', '2026-05-30', '', 'Undelivered', 'Unpaid', NULL),
+(26, 11, 9, '2026-04-25', '2026-04-25', '', 'Undelivered', 'Unpaid', NULL),
+(27, 12, 9, '2026-04-25', '2026-05-30', 'PAK BC', 'Delivered', 'Unpaid', NULL);
 
 -- --------------------------------------------------------
 
@@ -264,7 +298,14 @@ INSERT INTO `transaction_detail` (`id`, `transaction_id`, `name_product`, `harga
 (35, 23, 'BRS COKLAT 13S 2 500G', 27962, 8, '17.5', 39147),
 (36, 24, 'BRS COKLAT 7S 500 G', 30688, 10, '5', 15344),
 (37, 24, 'ROLLADE SAPI STIKER 1 : 36 1000 G ( MBG )', 46000, 10, '0', 0),
-(38, 24, 'SOSIS COCKTAIL 250 G', 25680, 20, '17.5', 89880);
+(38, 24, 'SOSIS COCKTAIL 250 G', 25680, 20, '17.5', 89880),
+(39, 25, 'BRS COKLAT 24S 2 500G', 28234, 150, '0', 0),
+(40, 25, 'BRS MERAH 24S 500G', 34549, 525, '0', 0),
+(41, 25, 'KORNET AYAM LOYANG 2 400G', 14894, 200, '0', 0),
+(42, 25, 'ROLLADE AYAM 1000 G ( MBG )', 45000, 300, '0', 0),
+(43, 26, 'BRS COKLAT 13S 500 G', 30688, 10, '0', 0),
+(44, 26, 'BRS COKLAT 24S 500 G', 30688, 25, '0', 0),
+(45, 27, 'ROLLADE SAPI 250 G', 18915, 10, '12.5', 23644);
 
 --
 -- Indexes for dumped tables
@@ -281,6 +322,13 @@ ALTER TABLE `tb_cart`
 --
 ALTER TABLE `tb_customer`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_member`
+--
+ALTER TABLE `tb_member`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `tb_products`
@@ -320,19 +368,25 @@ ALTER TABLE `transaction_detail`
 -- AUTO_INCREMENT for table `tb_cart`
 --
 ALTER TABLE `tb_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `tb_customer`
 --
 ALTER TABLE `tb_customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tb_member`
+--
+ALTER TABLE `tb_member`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tb_products`
 --
 ALTER TABLE `tb_products`
-  MODIFY `id_Unique` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_Unique` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `tb_shipper`
@@ -344,19 +398,29 @@ ALTER TABLE `tb_shipper`
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `transaction_detail`
 --
 ALTER TABLE `transaction_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tb_member`
+--
+ALTER TABLE `tb_member`
+  ADD CONSTRAINT `tb_member_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tb_users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
