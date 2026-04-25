@@ -33,6 +33,12 @@ if (mysqli_num_rows($cek) > 0) {
         ");
     }
 
+    // Tambahkan status member default (standar)
+    $q_user = mysqli_query($conn, "SELECT id FROM tb_users WHERE username='$username'");
+    $d_user = mysqli_fetch_assoc($q_user);
+    $user_id = $d_user['id'];
+    mysqli_query($conn, "INSERT INTO tb_member (user_id, status) VALUES ('$user_id', 'standar')");
+
     echo "Registrasi berhasil! <a href='login.php'>Login</a>";
 }
 ?>

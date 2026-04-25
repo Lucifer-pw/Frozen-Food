@@ -70,6 +70,11 @@ include '../assets/layout_header.php';
             </div>
 
             <div class="form-group">
+                <label>Status Keanggotaan (Hanya Admin yang bisa mengubah)</label>
+                <input type="text" value="<?= strtoupper($_SESSION['member_status'] ?? 'standar') ?>" readonly style="background:var(--bg-secondary); font-weight:700; color:<?= ($_SESSION['member_status'] ?? 'standar') == 'member' ? 'var(--success)' : 'var(--text-secondary)' ?>; opacity:0.9; cursor:not-allowed;">
+            </div>
+
+            <div class="form-group">
                 <label>Username</label>
                 <input type="text" name="username" value="<?= $data['username'] ?>" required>
             </div>

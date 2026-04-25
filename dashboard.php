@@ -14,7 +14,11 @@ include 'assets/layout_header.php';
 <!-- Welcome Card -->
 <div class="welcome-card card">
     <h2><i class="bi bi-snow2"></i> Selamat Datang di FrozenHub!</h2>
-    <p>Anda login sebagai <strong><?= strtoupper($_SESSION['role']); ?></strong> — Kelola bisnis frozen food Anda dengan mudah.</p>
+    <p>Anda login sebagai <strong><?= strtoupper($_SESSION['role']); ?></strong> 
+    <?php if($_SESSION['role'] == 'user'): ?>
+        — Status: <span class="badge" style="background:<?= ($_SESSION['member_status'] ?? 'standar') == 'member' ? 'var(--success-bg)' : 'var(--bg-secondary)' ?>; color:<?= ($_SESSION['member_status'] ?? 'standar') == 'member' ? 'var(--success)' : 'var(--text-secondary)' ?>; font-weight:700;"><?= strtoupper($_SESSION['member_status'] ?? 'standar') ?></span>
+    <?php endif; ?>
+    — Kelola bisnis frozen food Anda dengan mudah.</p>
 </div>
 
 <?php if ($_SESSION['role'] == 'admin') { ?>
@@ -48,6 +52,11 @@ include 'assets/layout_header.php';
         <div class="icon-wrap red"><i class="bi bi-receipt-cutoff"></i></div>
         <h4>Data Transaksi</h4>
         <p>Cetak & kelola invoice</p>
+    </a>
+    <a href="member/index_member.php" class="menu-card">
+        <div class="icon-wrap indigo"><i class="bi bi-person-badge-fill"></i></div>
+        <h4>Kelola Member</h4>
+        <p>Status keanggotaan</p>
     </a>
 </div>
 

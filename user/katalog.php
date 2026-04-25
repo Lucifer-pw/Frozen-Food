@@ -251,7 +251,16 @@ input[type=number] {
                 </thead>
                 <tbody id="catalog-body">
                 <?php
+                $member_status = $_SESSION['member_status'] ?? 'standar';
+                $member_only_ids = "28,29,30,31,32,33";
+
                 $query_sql = "SELECT * FROM tb_products WHERE stock > 0";
+                
+                // Jika bukan member, sembunyikan barang tertentu
+                if ($member_status !== 'member') {
+                    $query_sql .= " AND id_Unique NOT IN ($member_only_ids)";
+                }
+
                 if (!empty($keyword)) {
                     $query_sql .= " AND name_product LIKE '%$keyword%'";
                 }

@@ -14,6 +14,11 @@ if ($data && password_verify($password, $data['password'])) {
     $_SESSION['username'] = $data['username'];
     $_SESSION['email'] = $data['email'];
 
+    // Fetch membership status
+    $q_member = mysqli_query($conn, "SELECT status FROM tb_member WHERE user_id='{$data['id']}'");
+    $d_member = mysqli_fetch_assoc($q_member);
+    $_SESSION['member_status'] = $d_member['status'] ?? 'standar';
+
     header("Location: dashboard.php");
 } else {
     echo "<script>alert('Login gagal! Username atau password salah.'); window.location='login.php';</script>";

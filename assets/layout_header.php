@@ -67,6 +67,9 @@ if (isset($is_subfolder) && $is_subfolder) $base_url = '../';
         <a href="<?= $base_url ?>transaksi/index_transaksi.php" class="<?= $active_menu == 'transaksi' ? 'active' : '' ?>">
             <i class="bi bi-receipt-cutoff"></i> Transaksi
         </a>
+        <a href="<?= $base_url ?>member/index_member.php" class="<?= $active_menu == 'member' ? 'active' : '' ?>">
+            <i class="bi bi-person-badge-fill"></i> Member
+        </a>
         <?php } ?>
     </nav>
 
